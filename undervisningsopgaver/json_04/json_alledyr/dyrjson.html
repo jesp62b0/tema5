@@ -7,16 +7,16 @@
     <title></title>
 
     <style>
-        #liste {
-            display: grid;
-            grid-template-columns: (1, 1fr);
-            grid-gap: 1vw;
-        }
-
         .dyr {
             border: 1px solid black;
             margin: 5px;
             padding: 5px;
+        }
+
+        #liste {
+            display: grid;
+            grid-template-columns: (1fr, 1fr);
+            grid-gap: 1vw;
         }
     </style>
 
@@ -28,6 +28,9 @@
     <div id="liste"></div>
 
     <script>
+        let first = 0;
+        let last = 1;
+
         document.addEventListener("DOMContentLoaded", start);
         let alleDyr = [];
 
