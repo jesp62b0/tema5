@@ -19,6 +19,16 @@
             width: 100%;
         }
 
+        .menu {
+            text-align: center;
+            margin-bottom: 20px;
+
+        }
+
+        h1 {
+            text-align: center;
+        }
+
         .allepersoner {
 
             border: 1px solid black;
@@ -47,40 +57,65 @@
 
 <body>
 
+    <h1>Alle</h1>
+    <div class="menu">
+        <button class="filter" data-hold="alle">Alle</button>
+        <button class="filter" data-hold="a">Hold A</button>
+        <button class="filter" data-hold="b">Hold B</button>
+    </div>
+
     <div id="personliste"></div>
 
     <script>
         let personer = [];
-        let filter = "a";
+        let filter = "alle";
 
         document.addEventListener("DOMContentLoaded", start);
 
         function start() {
 
             getJson();
+            document.querySelectorAll(".filter").forEach(but => {
+                but.addEventListener("click", filtrering);
+                console.log(but);
+
+            });
 
         }
+
         async function getJson() {
             let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
 
-
             personer = await myJson.json();
-            console.log(personer);
-
             visPersoner();
-            console.log(person);
+
         }
 
         function visPersoner() {
-
-
+            let dest = document.querySelector("#personliste");
+            dest.innerHTML = "";
             personer.forEach(person => {
-                let dest = document.querySelector("#personliste");
-                if (person.hold == filter) {
-                    dest.innerHTML += `<div class="allepersoner"> <h2>${person.navn}</h2><img src=${person.billede} alt=${person.navn}><a href="https://github.com/${person.github}">GitHub</a></div>`;
+
+                if (filter == "alle" || filter == person.hold) {
+                    dest.innerHTML += `
+                                <div class="allepersoner">
+                                    <h2>${person.navn}</h2>
+                                    <img src=${person.billede} alt=${person.navn}>
+                                    <p>Hold:${person.hold}</p>
+                                    <a href="https://github.com/${person.github}">GitHub</a>
+                                </div>`;
                 }
             })
 
+        }
+
+
+
+        function filtrering() {
+            document.querySelector("h1").textContent = this.textContent;
+            filter = this.getAttribute("data-hold");
+            console.log(filter);
+            visPersoner();
         }
     </script>
 
