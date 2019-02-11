@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personliste</title>
+    <title>Bistro Babushka</title>
 
 
     <style>
-        #personliste {
+        #menu_babushka {
             display: grid;
             grid-template-columns: auto;
             grid-gap: 1vw;
@@ -16,14 +16,25 @@
         }
 
         body {
-            background-color: black;
+            background-color: ;
 
         }
 
+        section {
+            background-color: orange;
+
+        }
+
+        button {
+            margin-bottom: 10px;
+        }
+
+
         p {
-            color: white;
+            color: black;
             font-family: sans-serif;
             text-underline-position: below;
+
         }
 
         img {
@@ -32,27 +43,28 @@
 
         .menu {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
 
         }
 
         h1 {
             text-align: center;
-            color: white;
+            color: black;
+            font-size: 3rem;
         }
 
         h2 {
-            color: white;
+            color: black;
         }
 
         .valgt {
             background-color: tomato;
         }
 
-        .allepersoner {
+        .alleretter {
 
             border: 1px solid black;
-            background-color: turquoise;
+            background-color: lightgoldenrodyellow;
             text-align: center;
             margin: 1vw;
 
@@ -60,14 +72,14 @@
 
         @media only screen and (min-width:500px) {
 
-            #personliste {
+            #menu_babushka {
                 grid-template-columns: auto auto;
             }
         }
 
         @media only screen and (min-width:800px) {
 
-            #personliste {
+            #menu_babushka {
 
                 grid-template-columns: auto auto auto;
             }
@@ -78,17 +90,23 @@
 
 <body>
 
-    <h1>Alle</h1>
-    <div class="menu">
-        <button class="filter valgt" data-hold="alle">Alle</button>
-        <button class="filter" data-hold="a">Hold A</button>
-        <button class="filter" data-hold="b">Hold B</button>
-    </div>
+    <section>
 
-    <div id="personliste"></div>
+        <h1>Bistro Babushka</h1>
+        <div class="menu">
+            <button class="filter valgt" data-hold="alle">Alle</button>
+            <button class="filter" data-hold="a">Forretter</button>
+            <button class="filter" data-hold="b">Hovedretter</button>
+            <button class="filter" data-hold="alle">Desserter</button>
+            <button class="filter" data-hold="a">Drikkevarer</button>
+
+        </div>
+    </section>
+
+    <div id="menu_babushka"></div>
 
     <script>
-        let personer = [];
+        let retter = [];
         let filter = "alle";
 
         document.addEventListener("DOMContentLoaded", start);
@@ -105,34 +123,33 @@
         }
 
         async function getJson() {
-            let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+            let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
 
-            personer = await myJson.json();
+            retter = await myJson.json();
             //            personer.sort((a, b) => {
             //                return (a.alder - b.alder);
             //            });
-            personer.sort((a, b) => {
+            retter.sort((a, b) => {
                 return a.navn.localeCompare(b.navn);
             })
 
 
-            visPersoner();
+            visRetter();
 
         }
 
-        function visPersoner() {
-            let dest = document.querySelector("#personliste");
+        function visRetter() {
+            let dest = document.querySelector("#menu_babushka");
             dest.innerHTML = "";
-            personer.forEach(person => {
+            retter.forEach(ret => {
 
-                if (filter == "alle" || filter == person.hold) {
+                if (filter == "alle" || filter == ret.pris) {
                     dest.innerHTML += `
-                                <div class="allepersoner">
-                                    <h2>${person.navn}</h2>
-                                    <img src=${person.billede} alt=${person.navn}>
-                                    <p>Hold:${person.hold}
-                                    Alder: ${person.alder}</p>
-                                    <a href="https://github.com/${person.github}">GitHub</a>
+                                <div class="alleretter">
+                                    <h2>${ret.navn}</h2>
+                                    <img src=imgs/small/${ret.billede}-sm.jpg alt=${ret.navn}>
+                                    <p>${ret.kort}
+                                    Pris: ${ret.pris}kr</p>
                                 </div>`;
                 }
             })
@@ -146,7 +163,7 @@
             document.querySelector("h1").textContent = this.textContent;
             filter = this.getAttribute("data-hold");
             console.log(filter);
-            visPersoner();
+            visRetter();
             document.querySelectorAll(".filter").forEach(but => {
                 but.classList.remove(".valgt");
             });
