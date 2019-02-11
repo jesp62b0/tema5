@@ -41,6 +41,7 @@
                 grid-template-columns: auto auto auto;
             }
         }
+
     </style>
 
 </head>
@@ -50,38 +51,42 @@
     <div id="personliste"></div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", start);
+
         let personer = [];
         let filter = "a";
 
-        document.addEventListener("DOMContentLoaded", start);
+        async function start() {
 
-        function start() {
-
-            getJson();
-
-        }
-        async function getJson() {
-            let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
-
+            const myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+            console.log(personliste.json);
 
             personer = await myJson.json();
             console.log(personer);
 
             visPersoner();
-            console.log(person);
         }
 
         function visPersoner() {
 
-
+            let dest = document.querySelector("#personliste");
             personer.forEach(person => {
-                let dest = document.querySelector("#personliste");
+                console.log(person);
                 if (person.hold == filter) {
-                    dest.innerHTML += `<div class="allepersoner"> <h2>${person.navn}</h2><img src=${person.billede} alt=${person.navn}><a href="https://github.com/${person.github}">GitHub</a></div>`;
+                    dest.innerHTML += `
+
+                        <div class="allepersoner">
+                        <h2>${personer.navn}</h2>
+                        <img src=${personer.billede} alt=${personer.navn}>
+                        <a href="https://github.com/${personer.github}">GitHub</a>
+                        </div>
+                                    `;
                 }
+
             })
 
         }
+
     </script>
 
 
