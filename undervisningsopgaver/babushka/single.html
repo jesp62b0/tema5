@@ -71,20 +71,19 @@
         }
 
 
-        #popup {
+        .back {
+
+            width: 1rem;
+            height: 1rem;
+        }
+
+        #single {
             top: 0;
             width: 100vw;
             height: 100vw;
             position: fixed;
             background-color: hsla(0, 15%, 48#, 0.5);
-            display: none;
-        }
 
-        #indhold {
-            min-height: 50vh;
-            background-color: white;
-            width: 70vw;
-            margin: 4rem auto;
         }
 
         #luk {
@@ -93,7 +92,7 @@
             padding-right: 2rem;
         }
 
-        #luk_button {
+        #luk button {
             font-size: 2rem;
             padding: 1rem 2rem;
         }
@@ -121,11 +120,12 @@
 
 
 
-    <div id="popup">
+    <div id="single">
         <div id="luk">
-            <button>X</button>
-            <div id="indhold"></div>
+            <button class="back">
+                << </button> <div id="indhold">
         </div>
+    </div>
     </div>
 
 
@@ -148,6 +148,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", start);
+
+        let urlParams = new URLSearchParams(window.location.search);
+        let retId = urlParams.get("id");
 
         let retter = [];
         let filter = "alle";
@@ -186,7 +189,8 @@
             dest.innerHTML = "";
             retter.forEach(ret => {
 
-                if (filter == "alle" || filter == ret.kategori) {
+                if (ret.id == retId) {
+                    console.log(ret);
                     //                    let template = `
                     let template = `
 
@@ -196,49 +200,20 @@
                                     <p>${ret.kort}
                                     Pris: ${ret.pris}kr</p>
                                 </article>`;
+
+
                     dest.insertAdjacentHTML("beforeend", template);
-                    dest.lastElementChild.addEventListener("click", visSingle);
 
-                    function visSingle() {
-                        document.querySelector("#indhold").innerHTML = `
-                            <article class="alleretter">
-                                    <h2>${ret.navn}</h2>
-                                    <img src=imgs/small/${ret.billede}-sm.jpg alt=${ret.navn}>
-                                    <p>${ret.kort}
-                                    Pris: ${ret.pris}kr</p>
-                                </article>`;
-                        document.querySelector("#popup").style.display = "block";
-                        document.querySelector("#popup #luk").addEventListener("click", close);
-                    }
 
-                    function close() {
-                        document.querySelector("#popup").style.display = "none"
-                    }
+                    document.querySelector("#luk button").addEventListener("click", () => {
+                        location.href = "babushka2.html";
+                    })
+
 
 
 
                 }
             })
-
-        }
-
-
-
-        start();
-        document.querySelectorAll(".filter").forEach(elm => {
-            elm.addEventListener("click", filtrering);
-        })
-
-        function filtrering() {
-
-            //            document.querySelector("h1").textContent = this.textContent;
-            document.querySelectorAll(".filter").forEach(elm => {
-                elm.classList.remove("valgt");
-            })
-            this.classList.add("valgt");
-            filter = this.getAttribute("data-ret");
-            console.log(filter);
-            visRetter();
 
         }
     </script>

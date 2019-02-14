@@ -170,9 +170,7 @@
             let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
 
             retter = await myJson.json();
-            //            personer.sort((a, b) => {
-            //                return (a.alder - b.alder);
-            //            });
+
             retter.sort((a, b) => {
                 return a.navn.localeCompare(b.navn);
             })
@@ -187,7 +185,6 @@
             retter.forEach(ret => {
 
                 if (filter == "alle" || filter == ret.kategori) {
-                    //                    let template = `
                     let template = `
 
                                 <article class="alleretter">
@@ -197,23 +194,11 @@
                                     Pris: ${ret.pris}kr</p>
                                 </article>`;
                     dest.insertAdjacentHTML("beforeend", template);
-                    dest.lastElementChild.addEventListener("click", visSingle);
+                    dest.lastElementChild.addEventListener("click", () => {
+                        location.href = "single.html?id=" + ret.id;
+                    });
 
-                    function visSingle() {
-                        document.querySelector("#indhold").innerHTML = `
-                            <article class="alleretter">
-                                    <h2>${ret.navn}</h2>
-                                    <img src=imgs/small/${ret.billede}-sm.jpg alt=${ret.navn}>
-                                    <p>${ret.kort}
-                                    Pris: ${ret.pris}kr</p>
-                                </article>`;
-                        document.querySelector("#popup").style.display = "block";
-                        document.querySelector("#popup #luk").addEventListener("click", close);
-                    }
 
-                    function close() {
-                        document.querySelector("#popup").style.display = "none"
-                    }
 
 
 

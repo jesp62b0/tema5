@@ -12,29 +12,24 @@
             display: grid;
             grid-template-columns: auto;
             grid-gap: 1vw;
-
         }
 
         body {
             background-color: ;
-
         }
 
         section {
             background-color: orange;
-
         }
 
         button {
             margin-bottom: 10px;
         }
 
-
         p {
             color: black;
             font-family: sans-serif;
             text-underline-position: below;
-
         }
 
         img {
@@ -44,7 +39,6 @@
         .menu {
             text-align: center;
             margin-bottom: 10px;
-
         }
 
         h1 {
@@ -62,54 +56,20 @@
         }
 
         .alleretter {
-
             border: 1px solid black;
             background-color: lightgoldenrodyellow;
             text-align: center;
             margin: 1vw;
-
         }
-
-
-        #popup {
-            top: 0;
-            width: 100vw;
-            height: 100vw;
-            position: fixed;
-            background-color: hsla(0, 15%, 48#, 0.5);
-            display: none;
-        }
-
-        #indhold {
-            min-height: 50vh;
-            background-color: white;
-            width: 70vw;
-            margin: 4rem auto;
-        }
-
-        #luk {
-            position: fixed;
-            right: 2rem;
-            padding-right: 2rem;
-        }
-
-        #luk_button {
-            font-size: 2rem;
-            padding: 1rem 2rem;
-        }
-
 
         @media only screen and (min-width:500px) {
-
             #menu_babushka {
                 grid-template-columns: auto auto;
             }
         }
 
         @media only screen and (min-width:800px) {
-
             #menu_babushka {
-
                 grid-template-columns: auto auto auto;
             }
         }
@@ -119,128 +79,71 @@
 
 <body>
 
+    <section>
 
-
-    <div id="popup">
-        <div id="luk">
-            <button>X</button>
-            <div id="indhold"></div>
-        </div>
-    </div>
-
-
-    <header>
         <h1 id="logo">Bistro Babushka</h1>
-        <div class="menu">
+        <nav class="menu">
             <button class="filter valgt" data-ret="alle">Alle</button>
             <button class="filter" data-ret="forretter">Forretter</button>
             <button class="filter" data-ret="hovedretter">Hovedretter</button>
-            <button class="filter" data-ret="desserter">Desserter</button>
+            <button class="filter" data-ret="dessert">Desserter</button>
             <button class="filter" data-ret="drikkevarer">Drikkevarer</button>
 
-        </div>
-    </header>
+        </nav>
+    </section>
 
-    <main>
-        <div id="menu_babushka"></div>
-    </main>
-
+    <div id="menu_babushka"></div>
 
     <script>
         document.addEventListener("DOMContentLoaded", start);
 
-        let retter = [];
-        let filter = "alle";
+        let retter;
         let dest = document.querySelector("#menu_babushka");
+        let filter = "alle";
 
 
-
-        //function start() {
-        //
-        //getJson();
-        //document.querySelectorAll(".filter").forEach(but => {
-        //but.addEventListener("click", filtrering);
-        //console.log(but);
-        //
-        //});
-        //
-        //}
 
         async function start() {
-            let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
-
+            const myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
             retter = await myJson.json();
-            //            personer.sort((a, b) => {
-            //                return (a.alder - b.alder);
-            //            });
             retter.sort((a, b) => {
                 return a.navn.localeCompare(b.navn);
             })
-
-
             visRetter();
-
         }
 
         function visRetter() {
             dest.innerHTML = "";
             retter.forEach(ret => {
-
                 if (filter == "alle" || filter == ret.kategori) {
-                    //                    let template = `
                     let template = `
-
                                 <article class="alleretter">
                                     <h2>${ret.navn}</h2>
-                                    <img src=imgs/small/${ret.billede}-sm.jpg alt=${ret.navn}>
+                                    <img src=imgs-kopi/small/${ret.billede}-sm.jpg alt=${ret.navn}>
                                     <p>${ret.kort}
                                     Pris: ${ret.pris}kr</p>
                                 </article>`;
-                    dest.insertAdjacentHTML("beforeend", template);
-                    dest.lastElementChild.addEventListener("click", visSingle);
-
-                    function visSingle() {
-                        document.querySelector("#indhold").innerHTML = `
-                            <article class="alleretter">
-                                    <h2>${ret.navn}</h2>
-                                    <img src=imgs/small/${ret.billede}-sm.jpg alt=${ret.navn}>
-                                    <p>${ret.kort}
-                                    Pris: ${ret.pris}kr</p>
-                                </article>`;
-                        document.querySelector("#popup").style.display = "block";
-                        document.querySelector("#popup #luk").addEventListener("click", close);
-                    }
-
-                    function close() {
-                        document.querySelector("#popup").style.display = "none"
-                    }
 
 
+dest.insertAdjacentHTML("beforeend", template);                }
 
-                }
             })
-
         }
-
-
 
         start();
         document.querySelectorAll(".filter").forEach(elm => {
             elm.addEventListener("click", filtrering);
         })
 
-        function filtrering() {
 
-            //            document.querySelector("h1").textContent = this.textContent;
+        function filtrering() {
             document.querySelectorAll(".filter").forEach(elm => {
                 elm.classList.remove("valgt");
             })
             this.classList.add("valgt");
             filter = this.getAttribute("data-ret");
-            console.log(filter);
-            visRetter();
-
         }
+
     </script>
 
 
