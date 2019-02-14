@@ -12,11 +12,14 @@
             display: grid;
             grid-template-columns: auto;
             grid-gap: 1vw;
+            max-width: 1000px;
 
         }
 
         body {
-            background-color: ;
+            margin: 0;
+            padding: 0;
+            background-color: white;
 
         }
 
@@ -27,6 +30,8 @@
 
         button {
             margin-bottom: 10px;
+            border: none;
+            padding: 5px 6px;
         }
 
 
@@ -72,30 +77,38 @@
 
 
         #popup {
-            top: 0;
+            top: 2rem;
             width: 100vw;
             height: 100vw;
             position: fixed;
+            overflow: scroll;
             background-color: hsla(0, 15%, 48#, 0.5);
             display: none;
         }
 
         #indhold {
-            min-height: 50vh;
-            background-color: white;
+            min-height: 46vh;
             width: 70vw;
             margin: 4rem auto;
         }
 
         #luk {
             position: fixed;
-            right: 2rem;
+            top: 10rem;
+            right: 1.5rem;
             padding-right: 2rem;
         }
 
-        #luk_button {
+        #luk button {
             font-size: 2rem;
             padding: 1rem 2rem;
+            background-color: none;
+        }
+
+        .close {
+            width: 10px;
+            height: 10px;
+            background-color: none;
         }
 
 
@@ -104,6 +117,10 @@
             #menu_babushka {
                 grid-template-columns: auto auto;
             }
+
+            button {
+                padding: 10px 25px;
+            }
         }
 
         @media only screen and (min-width:800px) {
@@ -111,6 +128,10 @@
             #menu_babushka {
 
                 grid-template-columns: auto auto auto;
+            }
+
+            button {
+                padding: 15px 32px;
             }
         }
     </style>
@@ -123,7 +144,7 @@
 
     <div id="popup">
         <div id="luk">
-            <button>X</button>
+            <button class="close">X</button>
             <div id="indhold"></div>
         </div>
     </div>
