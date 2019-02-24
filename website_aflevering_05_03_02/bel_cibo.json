@@ -1,5 +1,5 @@
 [{
-        "navn": "Maiale Carpaccio Del Cibo",
+        "navn": "Maiale Carpaccio bel Cibo",
         "info": "Italien bred pig cutted in thin slices with spinach, mozzarella and fresh herbs",
         "pris": "110",
         "billede": "grise_cappachio_del_cibo.jpg",
@@ -8,7 +8,7 @@
 
     {
 
-        "navn": "Bruschetta Estate Del Cibo",
+        "navn": "Bruschetta Estate bel Cibo",
         "info": "Sommerly-styled bruschetta with fresh tomato, garlic, flowers and herbs",
         "pris": "85",
         "billede": "bruschetta_del_cibo.jpg",
@@ -16,7 +16,7 @@
 },
 
     {
-        "navn": "Ravioli Del Cibo",
+        "navn": "Ravioli bel Cibo",
         "info": "Gorgonzola, Mushroom and beef-filled pasta springled with olive-oil and fresh basil",
         "pris": "125",
         "billede": "ravioli_del_cibo.jpg",
@@ -25,7 +25,7 @@
 },
 
     {
-        "navn": "Pasta Spunga Del Cibo",
+        "navn": "Pasta Spunga bel Cibo",
         "info": "Fresh pasta filled with mushrooms, served with broccoli and truffle-sause",
         "pris": "130",
         "billede": "pasta_funghi_del_cibo.jpg",
@@ -33,7 +33,7 @@
 
  },
     {
-        "navn": "Gamberi Del Cibo",
+        "navn": "Gamberi bel Cibo",
         "info": "Grilled langoustine in butter sause with fresh herbs and garlic",
         "pris": "165",
         "billede": "langoustine_del_cibo.jpg",
@@ -41,7 +41,7 @@
 
  },
     {
-        "navn": "Vitello Del Cibo",
+        "navn": "Vitello bel Cibo",
         "info": "Grilled veal served with fresh green on a bed of redwine sause",
         "pris": "160",
         "billede": "veal_del_cibo.jpg",
@@ -49,7 +49,7 @@
 
  },
     {
-        "navn": "Pizza Del Cibo",
+        "navn": "Pizza bel Cibo",
         "info": "Traditional italien magaritta",
         "pris": "120",
         "billede": "pizza_del_cibo.jpg",
@@ -57,7 +57,7 @@
 
  },
     {
-        "navn": "Anatra Del Cibo",
+        "navn": "Anatra bel Cibo",
         "info": "Duck served with tomatoes and mozzarella",
         "pris": "160",
         "billede": "tomat_del_cibo.jpg",
