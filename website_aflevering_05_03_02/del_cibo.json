@@ -1,0 +1,66 @@
+[{
+        "navn": "Maiale Carpaccio Del Cibo",
+        "info": "Italien bred pig cutted in thin slices with spinach, mozzarella and fresh herbs",
+        "pris": "110",
+        "billede": "grise_cappachio_del_cibo.jpg",
+        "kategori": "forretter"
+},
+
+    {
+
+        "navn": "Bruschetta Estate Del Cibo",
+        "info": "Sommerly-styled bruschetta with fresh tomato, garlic, flowers and herbs",
+        "pris": "85",
+        "billede": "bruschetta_del_cibo.jpg",
+        "kategori": "forretter"
+},
+
+    {
+        "navn": "Ravioli Del Cibo",
+        "info": "Gorgonzola, Mushroom and beef-filled pasta springled with olive-oil and fresh basil",
+        "pris": "125",
+        "billede": "ravioli_del_cibo.jpg",
+        "kategori": "hovedretter"
+
+},
+
+    {
+        "navn": "Pasta Spunga Del Cibo",
+        "info": "Fresh pasta filled with mushrooms, served with broccoli and truffle-sause",
+        "pris": "130",
+        "billede": "pasta_funghi_del_cibo.jpg",
+        "kategori": "hovedretter"
+
+ },
+    {
+        "navn": "Gamberi Del Cibo",
+        "info": "Grilled langoustine in butter sause with fresh herbs and garlic",
+        "pris": "165",
+        "billede": "langoustine_del_cibo.jpg",
+        "kategori": "hovedretter"
+
+ },
+    {
+        "navn": "Vitello Del Cibo",
+        "info": "Grilled veal served with fresh green on a bed of redwine sause",
+        "pris": "160",
+        "billede": "veal_del_cibo.jpg",
+        "kategori": "hovedretter"
+
+ },
+    {
+        "navn": "Pizza Del Cibo",
+        "info": "Traditional italien magaritta",
+        "pris": "120",
+        "billede": "pizza_del_cibo.jpg",
+        "kategori": "hovedretter"
+
+ },
+    {
+        "navn": "Anatra Del Cibo",
+        "info": "Duck served with tomatoes and mozzarella",
+        "pris": "160",
+        "billede": "tomat_del_cibo.jpg",
+        "kategori": "hovedretter"
+
+ }]
