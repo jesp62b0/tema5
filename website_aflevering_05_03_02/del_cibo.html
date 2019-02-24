@@ -16,13 +16,52 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", start);
-
         let retter;
         let dest = document.querySelector("#retter");
         let filter = "alle";
 
-    </script>
+        async function start() {
+            const myJson = await fetch("del_cibo.json");
+            retter = await myJson.json();
+            visRetter();
+        }
 
+        function visRetter() {
+            dest.innerHTML = "";
+            retter.forEach(ret => {
+                if (filter == "alle" || filter == ret.kategori) {
+                    let template = `
+                        <article class="ret">
+                        <img src="img/${ret.billede}" alt=${ret.navn}">
+                        <h2>${ret.navn}</h2>
+                        <p>${ret.pris}kr.</p>
+                            </article>`;
+                    dest.insertAdjacentHTML("beforeend", template);
+                    dest.lastElementChild.addEventListener("click", visSingle);
+
+                    function visSingle() {
+                        document.querySelector("#indhold").innerHTML = `
+
+                        <article class="dish">
+                        <img src="img/${ret.billede}" alt=${ret.navn}">
+                        <h2>${ret.navn}</h2>
+                        <p>${ret.info}</p>
+                        <p>${ret.pris}kr.</p>
+
+                            </article>`;
+                        document.querySelector("#popup").style.display = "block";
+                        document.querySelector("#popup #luk").addEventListener("click", close);
+
+                    }
+
+                    function close() {
+                        document.querySelector("#popup").style.display = "none"
+                    }
+
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>
