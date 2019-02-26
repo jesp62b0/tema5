@@ -104,7 +104,7 @@
 
         #box {
             width: 60vw;
-            height: 70vh;
+            height: 66vh;
             position: fixed;
             background-color: rgba(0, 0, 0, 0.30);
             z-index: 5;
@@ -117,17 +117,24 @@
             box-sizing: border-box;
             background-color: #00ced1;
             width: 55vw;
-            height: 55vh;
+            height: 50vh;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             position: fixed;
             text-align: left;
-            padding: 1rem 1rem 1rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        #indhold img {
+            padding: 0rem 0.4rem 0rem 0.3rem;
         }
 
         #indhold p,
-        h2 {}
+        h2 {
+            padding-right: 0.5rem;
+            margin: 0 1rem 0 1rem;
+        }
 
         #box img {
             object-fit: contain;
@@ -207,7 +214,7 @@
             flex-direction: column;
         }
 
-        @media only screen and (min-width: 600px) {
+        @media only screen and (min-width: 400px) {
 
             #retter {
                 grid-template-columns: repeat(2, 1fr);
@@ -216,12 +223,9 @@
             .tekst {
                 margin: 0 5rem 0 4rem;
             }
-
-
-
         }
 
-        @media only screen and (min-width:768px) {
+        @media only screen and (min-width:660px) {
 
             #retter {
                 grid-template-columns: repeat(3, 1fr);
